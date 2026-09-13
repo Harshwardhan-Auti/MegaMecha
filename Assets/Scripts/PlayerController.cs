@@ -1,25 +1,43 @@
+using System.Collections;
 using Unity.Android.Gradle.Manifest;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Values")]
     [SerializeField] private float walkingSpeed = 8f;       //  A normal Speed of player
     [SerializeField] private float sprintingSpeed = 16f;   //  spirnting speed of player
     [SerializeField] private float jumpForce = 14f;       //   player jump force 
-    //[SerializeField]private float gravityMultiplier = 4f;
+    [SerializeField] private float gravityMultiplier = 4f;
+    [SerializeField] private float maxFallVelocity = 4.5f;
+    [SerializeField] private float staminaBar = 30f;        // too keep value of stamina
+    [SerializeField] private float staminaDrainRate = 5f;    // stamina drain 
+    [SerializeField] private float staminaRegainRate = 5f;  // stamina regain 
+    [SerializeField] private float maxStamina = 15f;
+    [SerializeField] private float exhaustionRecoveryThreshold = 5f;
+
     private float currentSpeed;
 
 
     [Header("Player State")]
     [SerializeField] private bool isOnGroud = true;
-    [SerializeField] private bool isSprinting = false;
+    [SerializeField] private bool isSprintingKeyHeld = false;
+    private bool isActuallySprinting = false;
+    private bool isExahuasted = false;
+    private bool isMoving;
 
 
     private Vector2 movementInput;
+    private Vector3 moveDirection;
     private Rigidbody playerRb;
+
+
+    public float currentStamina => staminaBar;
+    public float staminaMax => maxStamina;
     
 
 
@@ -35,23 +53,38 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        isMoving = movementInput.magnitude > 0.1f;
+        HandleStamina();
+        isActuallySprinting = isSprintingKeyHeld && staminaBar > 0 && !isExahuasted && isMoving ;
+        currentSpeed = isActuallySprinting ? sprintingSpeed : walkingSpeed;
+        moveDirection = ((movementInput.y * transform.forward) + (movementInput.x * transform.right)); // looks toward forward and right 
 
-        currentSpeed = isSprinting ? sprintingSpeed : walkingSpeed;
-        playerRb.linearVelocity = new Vector3(movementInput.x * currentSpeed, 
-                                    playerRb.linearVelocity.y, movementInput.y * currentSpeed); // Controlles player movemnets 
+        if (isOnGroud)
+        {
+            playerRb.linearVelocity = new Vector3(moveDirection.x * currentSpeed,
+                                        playerRb.linearVelocity.y, moveDirection.z * currentSpeed); // Controlles player movemnets 
+        }
 
         
+
     }
 
-    //private void FixedUpdate()
-    //{
-    //    if (playerRb.linearVelocity.y < 0)
-    //    {
+    private void FixedUpdate()
+    {
+        if (playerRb.linearVelocity.y < 0)
+        {
 
-    //        playerRb.AddForce(Physics.gravity * gravityMultiplier, ForceMode.Acceleration);
-        
-    //    }
-    //}
+            playerRb.AddForce(Physics.gravity * gravityMultiplier, ForceMode.Acceleration);
+
+            if (playerRb.linearVelocity.y < -maxFallVelocity)
+            {
+
+                playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, -maxFallVelocity, playerRb.linearVelocity.z);
+
+            }
+
+        }
+    }
 
 
 
@@ -91,10 +124,50 @@ public class PlayerController : MonoBehaviour
 
     public void OnSprinting(InputAction.CallbackContext context)
     {
+        
+            isSprintingKeyHeld = context.ReadValueAsButton();
+          
+        
+    
+    }
+    
 
-        isSprinting = context.ReadValueAsButton();
-    
-    
+    private void HandleStamina()
+    {
+        if (staminaBar <= 0)
+        {
+
+            isExahuasted = true;
+
+        }
+        else if (staminaBar >= exhaustionRecoveryThreshold)
+        {
+
+            isExahuasted = false;
+        }
+
+
+
+        if (isActuallySprinting )
+        {
+            staminaBar -= staminaDrainRate * Time.deltaTime;
+
+
+        }
+        else if (staminaBar < maxStamina)
+        {
+
+            
+            staminaBar += staminaRegainRate * Time.deltaTime;
+
+        }
+
+        staminaBar = Mathf.Clamp(staminaBar, 0f, maxStamina);
+
+
+
+
+
     }
 
 
@@ -103,7 +176,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)  // to check if player is on ground or not 
     {
-        if (collision.gameObject.CompareTag("Platform"))
+        if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Obstacles"))
         {
 
             isOnGroud = true;

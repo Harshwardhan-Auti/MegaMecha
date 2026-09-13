@@ -17,7 +17,7 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "90019a15-c4e6-483f-afae-cdb08f78f470",
                     "expectedControlType": "",
                     "processors": "",
@@ -28,6 +28,33 @@
                     "name": "Sprint",
                     "type": "Button",
                     "id": "6368858c-1c2c-455c-b48f-e6170fd70e94",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "73b6eadc-ede9-4106-8d00-3068963238b5",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "0931a2ee-9b1a-485b-b7eb-2107afd9a7c3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CameraSwitch",
+                    "type": "Button",
+                    "id": "3d8bd81b-d42c-4644-a916-1766bdabe448",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -111,8 +138,47 @@
                     "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c073ab1f-70be-460c-b36b-7cd6bb897600",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "686366cd-b6f3-4bfb-8ac3-de5b15ad8982",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "227e27da-f156-43e7-af4e-a6163a4cbb99",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Ui",
+            "id": "4ecc3496-6ec4-4b23-8d1d-882670e15c69",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": []
