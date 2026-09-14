@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     private PlayerController playerControllerScript;
     public UnityEngine.UI.Image actualStaminaImage;
+
+    
     void Start()
     {
         LockCursor();
