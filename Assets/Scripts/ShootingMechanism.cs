@@ -12,7 +12,6 @@ public class ShootingMechanism : MonoBehaviour
 
     public Animator shootAnim;
 
-
     [SerializeField] private bool isShooting = false;
 
     private Enemy enemyScript;
@@ -21,17 +20,17 @@ public class ShootingMechanism : MonoBehaviour
     void Start()
     {
 
-
-
+        
+        
     }
 
-
+    
     void Update()
     {
         if (isShooting && Time.time >= fireRate)
         {
             Shoot();
-
+            
             shootAnim.SetBool("Shooting", true);
 
         }
@@ -39,7 +38,7 @@ public class ShootingMechanism : MonoBehaviour
         {
             shootAnim.SetBool("Shooting", false);
             //shootingAudio.Stop();
-
+        
         }
     }
     public void Shoot()
@@ -74,7 +73,7 @@ public class ShootingMechanism : MonoBehaviour
     {
         if (context.performed)
         {
-
+           
             isShooting = true;
 
         }
