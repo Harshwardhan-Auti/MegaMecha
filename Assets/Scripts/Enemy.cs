@@ -56,9 +56,11 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        UpdateState();
         currentDistance = Vector3.Distance(transform.position, playerBody.position);
+        UpdateState();
+
+        //ebug.Log(currentDistance);
+       
 
     }
 
@@ -66,7 +68,7 @@ public class Enemy : MonoBehaviour
     {
 
         enemyHealth -= damage;
-        enemyHealth = math.clamp(enemyHealth, 0f, 100f);
+        enemyHealth = Mathf.Clamp(enemyHealth, 0f, 100f);
 
 
     }
@@ -90,20 +92,20 @@ public class Enemy : MonoBehaviour
             if (currentDistance <= attackRange)
             {
                 currentEnemyState = EnemyState.Attack;
-                Debug.Log("Attack");
+                
 
             }
             else if (currentDistance <= detectionRange)
             {
 
                 currentEnemyState = EnemyState.Chase;
-                Debug.Log("chase");
+                
             }
             else
             {
 
                 currentEnemyState = EnemyState.Patrol;
-                Debug.Log("Patrol");
+              
 
             }
 
