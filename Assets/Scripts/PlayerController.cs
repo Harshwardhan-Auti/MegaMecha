@@ -17,8 +17,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float staminaBar = 30f;        // too keep value of stamina
     [SerializeField] private float staminaDrainRate = 5f;    // stamina drain 
     [SerializeField] private float staminaRegainRate = 5f;  // stamina regain 
-    [SerializeField] private float maxStamina = 15f;
-    [SerializeField] private float exhaustionRecoveryThreshold = 5f;
+    [SerializeField] private float maxStamina = 15f;        // max stamina player can have
+    [SerializeField] private float exhaustionRecoveryThreshold = 5f; // the time till player cant used sprint once he drain all the stamina
+    [SerializeField] private float maxPlayerHealth = 100f;
+    [SerializeField] private float currrentPlayerHealth = 100f;
 
     private float currentSpeed;
 
@@ -38,7 +40,10 @@ public class PlayerController : MonoBehaviour
 
     public float currentStamina => staminaBar;
     public float staminaMax => maxStamina;
-    
+    public float playerHealth => currrentPlayerHealth;
+    public float maxHealth => maxPlayerHealth;
+
+
 
 
 
@@ -47,7 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         playerRb.linearVelocity = playerRb.linearVelocity;
-        
+
     }
 
 
@@ -55,7 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         isMoving = movementInput.magnitude > 0.1f;
         HandleStamina();
-        isActuallySprinting = isSprintingKeyHeld && staminaBar > 0 && !isExahuasted && isMoving ;
+        isActuallySprinting = isSprintingKeyHeld && staminaBar > 0 && !isExahuasted && isMoving;
         currentSpeed = isActuallySprinting ? sprintingSpeed : walkingSpeed;
         moveDirection = ((movementInput.y * transform.forward) + (movementInput.x * transform.right)); // looks toward forward and right 
 
@@ -65,7 +70,7 @@ public class PlayerController : MonoBehaviour
                                         playerRb.linearVelocity.y, moveDirection.z * currentSpeed); // Controlles player movemnets 
         }
 
-        
+
 
     }
 
@@ -100,12 +105,12 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context) // to trigger jump 
     {
         if (context.performed && isOnGroud)
-        { 
-            Jump(); 
-        
+        {
+            Jump();
+
         }
 
-        
+
 
 
     }
@@ -116,7 +121,7 @@ public class PlayerController : MonoBehaviour
         isOnGroud = false;
         playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0, playerRb.linearVelocity.z);  // for smooth jump , y velo become zero
         playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-       
+
 
 
     }
@@ -124,13 +129,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnSprinting(InputAction.CallbackContext context)
     {
-        
-            isSprintingKeyHeld = context.ReadValueAsButton();
-          
-        
-    
+
+        isSprintingKeyHeld = context.ReadValueAsButton();
+
+
+
     }
-    
+
 
     private void HandleStamina()
     {
@@ -148,7 +153,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (isActuallySprinting )
+        if (isActuallySprinting)
         {
             staminaBar -= staminaDrainRate * Time.deltaTime;
 
@@ -157,7 +162,7 @@ public class PlayerController : MonoBehaviour
         else if (staminaBar < maxStamina)
         {
 
-            
+
             staminaBar += staminaRegainRate * Time.deltaTime;
 
         }
@@ -180,7 +185,7 @@ public class PlayerController : MonoBehaviour
         {
 
             isOnGroud = true;
-        
+
         }
     }
 }
