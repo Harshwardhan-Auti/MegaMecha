@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1357798, g: 1, b: 0.1273585, a: 1}
+  m_Color: {r: 0.0059967856, g: 0.38679248, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -723,11 +723,11 @@ Transform:
   m_GameObject: {fileID: 237413006}
   serializedVersion: 2
   m_LocalRotation: {x: -0.43566084, y: -0.65375507, z: -0.61557794, w: 0.062191784}
-  m_LocalPosition: {x: 2.56, y: -0.01, z: -0.14}
-  m_LocalScale: {x: 2, y: 4.4363723, z: 2.0763998}
+  m_LocalPosition: {x: 2.5600002, y: -0.010000318, z: -0.14000043}
+  m_LocalScale: {x: 2, y: 4.436372, z: 2.0763996}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 247219903}
+  m_Father: {fileID: 1033229462}
   m_LocalEulerAnglesHint: {x: -59.212, y: -62.747, z: 105.579}
 --- !u!136 &237413008
 CapsuleCollider:
@@ -2207,11 +2207,11 @@ Transform:
   m_GameObject: {fileID: 755842415}
   serializedVersion: 2
   m_LocalRotation: {x: -0.42724645, y: -0.7892838, z: -0.43537086, w: -0.07031182}
-  m_LocalPosition: {x: 7.28, y: 0.7200004, z: 6.06}
-  m_LocalScale: {x: 2, y: 5.541029, z: 2.9428813}
+  m_LocalPosition: {x: 7.2800007, y: 0.7200004, z: 6.06}
+  m_LocalScale: {x: 2, y: 5.5410295, z: 2.9428818}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 247219903}
+  m_Father: {fileID: 1033229462}
   m_LocalEulerAnglesHint: {x: -38.842, y: -218.327, z: 70.825}
 --- !u!136 &755842417
 CapsuleCollider:
@@ -2797,6 +2797,39 @@ Transform:
   - {fileID: 247219903}
   m_Father: {fileID: 2125305025}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1033229461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1033229462}
+  m_Layer: 0
+  m_Name: 'Hnad '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1033229462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033229461}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.057669688, z: -0, w: 0.9983357}
+  m_LocalPosition: {x: 0.000056922436, y: -0.19999966, z: -0.18815264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 237413007}
+  - {fileID: 755842416}
+  m_Father: {fileID: 247219903}
+  m_LocalEulerAnglesHint: {x: 0, y: -6.612, z: 0}
 --- !u!1 &1091436945
 GameObject:
   m_ObjectHideFlags: 0
@@ -3329,10 +3362,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6239359517610320279, guid: 67f716418f7ba2146a845739c7782755, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 237413007}
-    - targetCorrespondingSourceObject: {fileID: 6239359517610320279, guid: 67f716418f7ba2146a845739c7782755, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 755842416}
+      addedObject: {fileID: 1033229462}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6975497155788886916, guid: 67f716418f7ba2146a845739c7782755, type: 3}
       insertIndex: -1
@@ -4983,7 +5013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraBehaviour
   mouseSensitivity: 30
   playerBody: {fileID: 2125305025}
-  offset: {x: 0, y: 0.6, z: 0.4}
+  offset: {x: 0, y: 0.5, z: 0.4}
 --- !u!1 &1898777138
 GameObject:
   m_ObjectHideFlags: 0
