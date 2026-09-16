@@ -430,7 +430,8 @@ GameObject:
   - component: {fileID: 145550921}
   - component: {fileID: 145550920}
   - component: {fileID: 145550919}
-  m_Layer: 0
+  - component: {fileID: 145550923}
+  m_Layer: 7
   m_Name: 'Platform '
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -531,6 +532,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &145550923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145550918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 608b90d5dfa6649459f2d76270256f68, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &217295196
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +578,7 @@ GameObject:
   - component: {fileID: 217295199}
   - component: {fileID: 217295198}
   - component: {fileID: 217295197}
+  - component: {fileID: 217295203}
   m_Layer: 6
   m_Name: Enemy _03
   m_TagString: Enemy
@@ -566,10 +600,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   currentDistance: 0
   enemyHealth: 100
+  patrolingRadius: 15
   attackRange: 2
   damamge: 0
   attackExitBuffer: 0.25
-  detectionRange: 6
+  detectionRange: 10
   isAlive: 1
   playerBody: {fileID: 2125305025}
   currentEnemyState: 0
@@ -596,9 +631,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &217295199
 CapsuleCollider:
@@ -695,6 +730,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 814534819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &217295203
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217295196}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &237413006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2615,6 +2672,7 @@ GameObject:
   - component: {fileID: 927247872}
   - component: {fileID: 927247871}
   - component: {fileID: 927247870}
+  - component: {fileID: 927247876}
   m_Layer: 6
   m_Name: Enemy _04
   m_TagString: Enemy
@@ -2636,10 +2694,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   currentDistance: 0
   enemyHealth: 100
+  patrolingRadius: 15
   attackRange: 2
   damamge: 0
   attackExitBuffer: 0.25
-  detectionRange: 6
+  detectionRange: 10
   isAlive: 1
   playerBody: {fileID: 2125305025}
   currentEnemyState: 0
@@ -2666,9 +2725,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &927247872
 CapsuleCollider:
@@ -2765,6 +2824,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 814534819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &927247876
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927247869}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &995324328
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,6 +3149,7 @@ GameObject:
   - component: {fileID: 1138442268}
   - component: {fileID: 1138442267}
   - component: {fileID: 1138442266}
+  - component: {fileID: 1138442272}
   m_Layer: 6
   m_Name: Enemy_02
   m_TagString: Enemy
@@ -3089,10 +3171,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   currentDistance: 0
   enemyHealth: 100
+  patrolingRadius: 15
   attackRange: 2
   damamge: 0
   attackExitBuffer: 0.25
-  detectionRange: 6
+  detectionRange: 10
   isAlive: 1
   playerBody: {fileID: 2125305025}
   currentEnemyState: 0
@@ -3119,9 +3202,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &1138442268
 CapsuleCollider:
@@ -3218,6 +3301,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 814534819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &1138442272
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138442265}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1205216418
 GameObject:
   m_ObjectHideFlags: 0
@@ -4328,6 +4433,7 @@ GameObject:
   - component: {fileID: 1654466595}
   - component: {fileID: 1654466594}
   - component: {fileID: 1654466599}
+  - component: {fileID: 1654466600}
   m_Layer: 6
   m_Name: Enemy_01
   m_TagString: Enemy
@@ -4358,9 +4464,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &1654466595
 CapsuleCollider:
@@ -4471,13 +4577,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   currentDistance: 0
   enemyHealth: 100
+  patrolingRadius: 15
   attackRange: 2
   damamge: 0
   attackExitBuffer: 0.25
-  detectionRange: 20
+  detectionRange: 10
   isAlive: 1
   playerBody: {fileID: 2125305025}
   currentEnemyState: 0
+--- !u!195 &1654466600
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654466593}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1700957340
 GameObject:
   m_ObjectHideFlags: 0
@@ -5449,7 +5578,7 @@ Transform:
   m_GameObject: {fileID: 1973458269}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.8, y: 1.05, z: -0.7}
+  m_LocalPosition: {x: -5.5, y: 1.05, z: -4.73}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []

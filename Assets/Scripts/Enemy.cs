@@ -1,6 +1,7 @@
-using Unity.Mathematics;
+
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class Enemy : MonoBehaviour
     [Header("Health")]
     [SerializeField] private float enemyHealth = 100;
 
-    [Header("Movement")]
+    [Header("Patrol")]
+    [SerializeField] private float patrolingRadius = 10f;
+
 
     [Header("Attack")]
     [SerializeField] private float attackRange = 2f;
@@ -20,6 +23,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float detectionRange = 6f;
     private bool isDetected = false;
 
+
+    private NavMeshAgent enemyAgent;
 
 
 
@@ -46,6 +51,9 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        enemyAgent = GetComponent<NavMeshAgent>();
+        
+        Patrol();
 
     }
 
@@ -58,10 +66,11 @@ public class Enemy : MonoBehaviour
         }
         currentDistance = Vector3.Distance(transform.position, playerBody.position);
         UpdateState();
+        HandlePatrol();
 
         //ebug.Log(currentDistance);
-       
 
+        
     }
 
     public void TakeDamage(float damage)
@@ -115,6 +124,54 @@ public class Enemy : MonoBehaviour
 
 
 
+    }
+
+    public Vector3 GetRandomPoint()
+    {
+
+
+         Vector3 randomDirection = Random.insideUnitSphere * patrolingRadius;
+         Vector3 randomPoint = randomDirection + transform.position;
+
+        if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, patrolingRadius, NavMesh.AllAreas))
+        {
+
+            return hit.position;
+            
+        }
+        return transform.position;
+
+
+
+    }
+
+    private void Patrol()
+    {
+
+        Vector3 patrolPoint = GetRandomPoint();
+        enemyAgent.SetDestination(patrolPoint);
+        
+    }
+
+    private void HandlePatrol()
+    { 
+        if(currentEnemyState == EnemyState.Patrol)
+        {
+
+            if (!enemyAgent.pathPending && enemyAgent.remainingDistance <= enemyAgent.stoppingDistance)
+            {
+
+                Patrol();
+            
+            }
+        
+        
+        
+        }
+    
+    
+    
+    
     }
 
 }
