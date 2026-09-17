@@ -601,9 +601,11 @@ MonoBehaviour:
   currentDistance: 0
   enemyHealth: 100
   patrolingRadius: 15
-  attackRange: 2
-  damamge: 0
+  attackRange: 3
+  damamge: 10
   attackExitBuffer: 0.25
+  attackCoolDown: 1
+  nextAttackTime: 0
   detectionRange: 10
   isAlive: 1
   playerBody: {fileID: 2125305025}
@@ -2695,9 +2697,11 @@ MonoBehaviour:
   currentDistance: 0
   enemyHealth: 100
   patrolingRadius: 15
-  attackRange: 2
-  damamge: 0
+  attackRange: 3
+  damamge: 10
   attackExitBuffer: 0.25
+  attackCoolDown: 1
+  nextAttackTime: 0
   detectionRange: 10
   isAlive: 1
   playerBody: {fileID: 2125305025}
@@ -3172,9 +3176,11 @@ MonoBehaviour:
   currentDistance: 0
   enemyHealth: 100
   patrolingRadius: 15
-  attackRange: 2
-  damamge: 0
+  attackRange: 3
+  damamge: 10
   attackExitBuffer: 0.25
+  attackCoolDown: 1
+  nextAttackTime: 0
   detectionRange: 10
   isAlive: 1
   playerBody: {fileID: 2125305025}
@@ -4578,9 +4584,11 @@ MonoBehaviour:
   currentDistance: 0
   enemyHealth: 100
   patrolingRadius: 15
-  attackRange: 2
-  damamge: 0
+  attackRange: 3
+  damamge: 10
   attackExitBuffer: 0.25
+  attackCoolDown: 1
+  nextAttackTime: 0
   detectionRange: 10
   isAlive: 1
   playerBody: {fileID: 2125305025}
@@ -6399,7 +6407,7 @@ MonoBehaviour:
   maxStamina: 15
   exhaustionRecoveryThreshold: 1.7
   maxPlayerHealth: 100
-  currrentPlayerHealth: 100
+  currentPlayerHealth: 100
   isOnGroud: 1
   isSprintingKeyHeld: 0
 --- !u!136 &2125305023

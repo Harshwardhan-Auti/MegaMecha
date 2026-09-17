@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxStamina = 15f;        // max stamina player can have
     [SerializeField] private float exhaustionRecoveryThreshold = 5f; // the time till player cant used sprint once he drain all the stamina
     [SerializeField] private float maxPlayerHealth = 100f;
-    [SerializeField] private float currrentPlayerHealth = 100f;
+    [SerializeField] private float currentPlayerHealth ;
+    
 
     private float currentSpeed;
 
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     public float currentStamina => staminaBar;
     public float staminaMax => maxStamina;
-    public float playerHealth => currrentPlayerHealth;
+    public float playerHealth => currentPlayerHealth;
     public float maxHealth => maxPlayerHealth;
 
 
@@ -70,7 +71,13 @@ public class PlayerController : MonoBehaviour
                                         playerRb.linearVelocity.y, moveDirection.z * currentSpeed); // Controlles player movemnets 
         }
 
+        if (currentPlayerHealth <= 0)
+        {
 
+            Debug.Log("data khatam Khellll khatammmm !!!!!!!!!");
+        
+        
+        }
 
     }
 
@@ -172,6 +179,13 @@ public class PlayerController : MonoBehaviour
 
 
 
+
+    }
+
+    public void GetDamage(float damageByEnemy)
+    {
+        currentPlayerHealth -= damageByEnemy;
+        currentPlayerHealth = Mathf.Clamp(currentPlayerHealth, 0f, 100f);
 
     }
 

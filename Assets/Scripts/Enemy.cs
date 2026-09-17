@@ -1,5 +1,7 @@
 
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor.TerrainTools;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,8 +18,10 @@ public class Enemy : MonoBehaviour
 
     [Header("Attack")]
     [SerializeField] private float attackRange = 2f;
-    [SerializeField] private float damamge;
+    [SerializeField] private float damamge = 100f;
     [SerializeField] private float attackExitBuffer = 0.25f;
+    [SerializeField] private float attackCoolDown = 1f;
+    [SerializeField] private float nextAttackTime = 0f;
 
     [Header("Detection")]
     [SerializeField] private float detectionRange = 6f;
@@ -35,6 +39,7 @@ public class Enemy : MonoBehaviour
 
 
     public Transform playerBody;
+    private PlayerController playerControllerScript;
 
     public enum EnemyState
     {
@@ -52,6 +57,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         enemyAgent = GetComponent<NavMeshAgent>();
+        playerControllerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         
         Patrol();
 
@@ -67,10 +73,12 @@ public class Enemy : MonoBehaviour
         currentDistance = Vector3.Distance(transform.position, playerBody.position);
         UpdateState();
         HandlePatrol();
+        HandleChase();
+        HandleAttack();
 
         //ebug.Log(currentDistance);
 
-        
+
     }
 
     public void TakeDamage(float damage)
@@ -101,6 +109,8 @@ public class Enemy : MonoBehaviour
             if (currentDistance <= attackRange)
             {
                 currentEnemyState = EnemyState.Attack;
+                enemyAgent.isStopped = true;
+                Debug.Log("Atack");
                 
 
             }
@@ -108,13 +118,16 @@ public class Enemy : MonoBehaviour
             {
 
                 currentEnemyState = EnemyState.Chase;
-                
+                enemyAgent.isStopped = false;
+                Debug.Log("Chase");
+
             }
             else
             {
 
                 currentEnemyState = EnemyState.Patrol;
-              
+                enemyAgent.isStopped = false;
+                Debug.Log("Patrol");
 
             }
 
@@ -168,10 +181,45 @@ public class Enemy : MonoBehaviour
         
         
         }
+        
+        
     
+    
+    }
+
+    private void HandleChase()
+    {
+
+
+        if (currentEnemyState == EnemyState.Chase)
+        {
+
+            enemyAgent.SetDestination(playerBody.position);
+        
+        }
+
+
+
+
+    }
+
+    private void HandleAttack()
+    {
+
+        if (currentEnemyState == EnemyState.Attack && Time.time >= nextAttackTime)
+        {
+            Debug.Log("Dealing Damage");
+            playerControllerScript.GetDamage(damamge);
+            nextAttackTime = Time.time + attackCoolDown;
+        
+        
+        }
+         
     
     
     
     }
+
+
 
 }
