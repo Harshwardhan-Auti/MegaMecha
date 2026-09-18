@@ -3,17 +3,22 @@ using UnityEngine.InputSystem;
 
 public class ShootingMechanism : MonoBehaviour
 {
-    [SerializeField] private float bulletRange = 20f;
-    [SerializeField] private float bulletDamage = 10f;
+    // [SerializeField] private float fireRate = 0.1f;
+    // [SerializeField] private float currentWeapon.bulletRange = 20f;
+    // [SerializeField] private float bulletDamage = 10f;
     [SerializeField] private LayerMask hitableLayer;
-    [SerializeField] private float fireRate = 0.1f;
+    [SerializeField] private float nextFireTime= 0f;
+
+   
+
+    [SerializeField] private WeaponData currentWeapon;
 
     public Transform gunMuzzle;
 
     public Animator shootAnim;
 
     [SerializeField] private bool isShooting = false;
-
+    
     private Enemy enemyScript;
 
 
@@ -27,9 +32,10 @@ public class ShootingMechanism : MonoBehaviour
     
     void Update()
     {
-        if (isShooting && Time.time >= fireRate)
+        if (isShooting && Time.time >= nextFireTime)
         {
             Shoot();
+            nextFireTime = Time.time * currentWeapon.fireRate;
             
             shootAnim.SetBool("Shooting", true);
 
@@ -45,14 +51,20 @@ public class ShootingMechanism : MonoBehaviour
     {
 
         Camera cam = Camera.main;
+        Debug.Log("shoot() called");
         Vector3 origin = gunMuzzle.position;
         Vector3 direction = cam.transform.forward;
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, bulletRange, hitableLayer))
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, currentWeapon.bulletRange, hitableLayer))
         {
             Enemy hitEnemy = hit.collider.GetComponent<Enemy>();
-            Debug.Log("Shots Fireeee!!!(Dramatically)");
-            hitEnemy.TakeDamage(bulletDamage);
+            
+            if (hitEnemy != null)
+            {
+                hitEnemy.TakeDamage(currentWeapon.bulletDamage);
+                Debug.Log("Shots Fireeee!!!(Dramatically)");
+            }
+           
 
 
         }
@@ -66,7 +78,7 @@ public class ShootingMechanism : MonoBehaviour
 
         if (Camera.main == null || gunMuzzle == null) return;
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(gunMuzzle.position, gunMuzzle.position + Camera.main.transform.forward * bulletRange);
+        Gizmos.DrawLine(gunMuzzle.position, gunMuzzle.position + Camera.main.transform.forward * currentWeapon.bulletRange);
     }
 
     public void OnShoot(InputAction.CallbackContext context)

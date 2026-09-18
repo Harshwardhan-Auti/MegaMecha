@@ -5324,12 +5324,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f730407f2b77bc4c97c50a206049244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootingMechanism
-  bulletRange: 60
-  bulletDamage: 1.5
   hitableLayer:
     serializedVersion: 2
     m_Bits: 64
-  fireRate: 0.01
+  nextFireTime: 0
+  currentWeapon: {fileID: 11400000, guid: 88b65b0575a37014cba1d92541e1c5fa, type: 2}
   gunMuzzle: {fileID: 995324329}
   shootAnim: {fileID: 559931120}
   isShooting: 0
