@@ -5328,7 +5328,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   nextFireTime: 0
-  currentWeapon: {fileID: 11400000, guid: 88b65b0575a37014cba1d92541e1c5fa, type: 2}
+  currentWeapon: {fileID: 11400000, guid: aaf7ae62b28dc3246a38e76f4935d092, type: 2}
   gunMuzzle: {fileID: 995324329}
   shootAnim: {fileID: 559931120}
   isShooting: 0

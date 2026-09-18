@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db84f96b30d1aef448f1a68cc2ac5113, type: 3}
   m_Name: Sniper
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  itemName: 
-  itemIcon: {fileID: 0}
+  itemName: Sniper
+  itemIcon: {fileID: 21300000, guid: 7369a739f5e19a14ba9843e69f4bc339, type: 3}
   description: 
-  fireRate: 0
-  bulletDamage: 0
-  magzineSize: 0
-  bulletRange: 0
+  fireRate: 1
+  bulletDamage: 100
+  magzineSize: 3
+  bulletRange: 100
