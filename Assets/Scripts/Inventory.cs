@@ -1,11 +1,16 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System;
+
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private List<InventorySlot> slots = new List<InventorySlot>();
+
+    public List<InventorySlot> inventorySlot => slots;
+
+    public event Action onInventoryChanged;
 
     public void AddItems(ItemData item, int amount)
     {
@@ -39,7 +44,9 @@ public class Inventory : MonoBehaviour
         
         
         }
-    
+
+        onInventoryChanged.Invoke();
+        
     
     }
    

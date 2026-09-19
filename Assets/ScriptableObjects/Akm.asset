@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Akm
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   itemName: Akm
-  itemIcon: {fileID: 21300000, guid: 7369a739f5e19a14ba9843e69f4bc339, type: 3}
+  itemIcon: {fileID: 21300000, guid: 4e5b9ee5ae9e1964a8c5d2b690e52596, type: 3}
   description: Autorifle
   fireRate: 0.01
   bulletDamage: 1
