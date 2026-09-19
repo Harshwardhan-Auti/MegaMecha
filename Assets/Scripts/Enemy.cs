@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Detection")]
     [SerializeField] private float detectionRange = 6f;
-    private bool isDetected = false;
+    //private bool isDetected = false;
 
 
     private NavMeshAgent enemyAgent;
@@ -99,7 +99,7 @@ public class Enemy : MonoBehaviour
             {
 
                 currentEnemyState = EnemyState.Chase;
-                Debug.Log("Chasing");
+                
             }
 
         }
@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour
             {
                 currentEnemyState = EnemyState.Attack;
                 enemyAgent.isStopped = true;
-                Debug.Log("Atack");
+                
                 
 
             }
@@ -119,7 +119,7 @@ public class Enemy : MonoBehaviour
 
                 currentEnemyState = EnemyState.Chase;
                 enemyAgent.isStopped = false;
-                Debug.Log("Chase");
+                
 
             }
             else
@@ -127,7 +127,7 @@ public class Enemy : MonoBehaviour
 
                 currentEnemyState = EnemyState.Patrol;
                 enemyAgent.isStopped = false;
-                Debug.Log("Patrol");
+                
 
             }
 

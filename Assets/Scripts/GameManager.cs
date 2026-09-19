@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
     private PlayerController playerControllerScript;
     public UnityEngine.UI.Image actualStaminaImage;
     public UnityEngine.UI.Image playerHealthImage;
+    public GameObject inventoryPannel;
+    private bool isInventoryOpen = false;
 
 
 
@@ -26,6 +29,8 @@ public class GameManager : MonoBehaviour
         tpCam.GetComponent<AudioListener>().enabled = true;
 
         playerControllerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
+        inventoryPannel.SetActive(false);
     }
 
 
@@ -82,6 +87,37 @@ public class GameManager : MonoBehaviour
 
         } 
 
+    }
+
+    public void OnOpeningInventory(InputAction.CallbackContext context)
+    {
+
+        if (context.performed)
+        {
+
+           
+                isInventoryOpen = !isInventoryOpen;
+            inventoryPannel.SetActive(isInventoryOpen);
+
+            if (isInventoryOpen)
+            {
+                UnlockCursor();
+                Time.timeScale = 0;
+
+
+            }
+            else 
+            {
+
+                LockCursor();
+                Time.timeScale = 1;
+            }
+
+
+
+        }
+        
+            
     }
 
 }

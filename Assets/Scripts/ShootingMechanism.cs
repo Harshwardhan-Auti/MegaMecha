@@ -12,10 +12,11 @@ public class ShootingMechanism : MonoBehaviour
    
 
     [SerializeField] private WeaponData currentWeapon;
+    [SerializeField] private GameObject currentWeaponModel;
 
     public Transform gunMuzzle;
 
-    public Animator shootAnim;
+    private Animator shootAnim;
 
     [SerializeField] private bool isShooting = false;
     
@@ -32,10 +33,15 @@ public class ShootingMechanism : MonoBehaviour
     
     void Update()
     {
+        if (currentWeapon == null) return;
+        if (currentWeaponModel== null) return;
+
+        
+
         if (isShooting && Time.time >= nextFireTime)
         {
             Shoot();
-            nextFireTime = Time.time * currentWeapon.fireRate;
+            nextFireTime = Time.time + currentWeapon.fireRate;
             
             shootAnim.SetBool("Shooting", true);
 
@@ -49,9 +55,11 @@ public class ShootingMechanism : MonoBehaviour
     }
     public void Shoot()
     {
+        if (currentWeapon == null) return;
+        if (currentWeaponModel == null) return;
 
         Camera cam = Camera.main;
-        Debug.Log("shoot() called");
+       
         Vector3 origin = gunMuzzle.position;
         Vector3 direction = cam.transform.forward;
 
@@ -75,6 +83,8 @@ public class ShootingMechanism : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (currentWeapon == null) return;
+        if (currentWeaponModel == null) return;
 
         if (Camera.main == null || gunMuzzle == null) return;
         Gizmos.color = Color.red;
@@ -95,7 +105,23 @@ public class ShootingMechanism : MonoBehaviour
             isShooting = false;
 
         }
-
+            
 
     }
+
+
+    public void EquipWeapon(WeaponData newWeapon)
+    {
+        if (currentWeaponModel != null)
+        {
+            Destroy(currentWeaponModel);
+        }
+
+        currentWeapon = newWeapon;
+        currentWeaponModel = Instantiate(newWeapon.prefab, gunMuzzle);
+        shootAnim = currentWeaponModel.GetComponent<Animator>();
+    }
+
+
+
 }
