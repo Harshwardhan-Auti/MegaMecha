@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   itemName: Sniper
-  itemIcon: {fileID: 21300000, guid: c954f745ee09b0b4f857bfafcbb88b08, type: 3}
+  itemIcon: {fileID: 21300000, guid: 93b6144477b0d6e45bb087576811e431, type: 3}
   description: 
-  prefab: {fileID: 4491821703896157220, guid: 11cb691ba85e0fe4b8e1bcda50837769, type: 3}
+  prefab: {fileID: 546632157958447043, guid: 11cb691ba85e0fe4b8e1bcda50837769, type: 3}
   fireRate: 1
   bulletDamage: 100
   magzineSize: 3

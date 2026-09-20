@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db84f96b30d1aef448f1a68cc2ac5113, type: 3}
-  m_Name: Akm
+  m_Name: Smg
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  itemName: Akm
-  itemIcon: {fileID: 21300000, guid: af3dc4b728e39494fa30660ee7ffe9a8, type: 3}
-  description: Autorifle
-  prefab: {fileID: 5180647863456275502, guid: 25e92100ba295414c8d35592c62d493f, type: 3}
-  fireRate: 0.3
-  bulletDamage: 15
-  magzineSize: 30
-  bulletRange: 60
+  itemName: Smg
+  itemIcon: {fileID: 21300000, guid: 6f9332435b442c948b5e07f3ed727acd, type: 3}
+  description: 
+  prefab: {fileID: 3577275931107793863, guid: c28d512ca41704b4fa1e34b65754a36f, type: 3}
+  fireRate: 0.1
+  bulletDamage: 10
+  magzineSize: 20
+  bulletRange: 40
