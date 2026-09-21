@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   itemName: Pistol
-  itemIcon: {fileID: 21300000, guid: 7369a739f5e19a14ba9843e69f4bc339, type: 3}
+  itemIcon: {fileID: 21300000, guid: 0e0b976dbff0587489fdf08c28e4c78f, type: 3}
   description: 20 damage
+  prefab: {fileID: 0}
   fireRate: 0.5
   bulletDamage: 20
   magzineSize: 7
