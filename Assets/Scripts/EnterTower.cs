@@ -7,7 +7,7 @@ public class EnterTower : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            other.transform.position = new Vector3(218f, 14f, -13f);
+            other.transform.position = new Vector3(transform.position.x, 14f, transform.position.z);
             
         }
     }

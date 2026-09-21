@@ -2,11 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private List<InventorySlot> slots = new List<InventorySlot>();
+
+    [SerializeField] private List<ItemData> allPossibleItems;
 
     public List<InventorySlot> inventorySlot => slots;
 
@@ -47,6 +50,26 @@ public class Inventory : MonoBehaviour
 
         onInventoryChanged.Invoke();
         
+    
+    }
+
+
+    public ItemData FindItemByName(string name)
+    {
+
+        foreach (ItemData item in allPossibleItems)
+        {
+
+            if (item.itemName == name)
+            {
+
+                return item;
+                
+            }
+            
+            
+        }
+        return null;
     
     }
    

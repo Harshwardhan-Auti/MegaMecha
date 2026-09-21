@@ -17,6 +17,6 @@ MonoBehaviour:
   description: 
   prefab: {fileID: 3577275931107793863, guid: c28d512ca41704b4fa1e34b65754a36f, type: 3}
   fireRate: 0.1
-  bulletDamage: 10
+  bulletDamage: 20
   magzineSize: 20
   bulletRange: 40
