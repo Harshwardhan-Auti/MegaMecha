@@ -1,8 +1,9 @@
-using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine;
+using static UnityEditor.Progress;
 
 
 public class Inventory : MonoBehaviour
@@ -72,5 +73,39 @@ public class Inventory : MonoBehaviour
         return null;
     
     }
-   
+
+    public void SaveInventory()
+    {
+        InventorySaveData saveData = new InventorySaveData();
+
+        foreach (InventorySlot slot in slots)
+        {
+
+            InventorySlotSaveData slotData = new InventorySlotSaveData();
+            slotData.itemName = slot.item.itemName;
+            slotData.quantity = slot.quantity;
+            saveData.slots.Add(slotData);
+            
+            
+        }
+
+        string json = JsonUtility.ToJson(saveData);
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/inventory.json", json);
+
+
+    }
+    
+    public void LoadInventory()
+    {
+
+       string jsonString =  System.IO.File.ReadAllText(Application.persistentDataPath + "/inventory.json" );
+        InventorySaveData saveData = JsonUtility.FromJson<InventorySaveData>(jsonString);
+        slots.Clear();
+
+       
+    }
+
+
+
 }
+

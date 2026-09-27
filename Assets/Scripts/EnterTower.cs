@@ -8,6 +8,7 @@ public class EnterTower : MonoBehaviour
         {
 
             other.transform.position = new Vector3(transform.position.x, 14f, transform.position.z);
+            Debug.Log("Entered the tower");
             
         }
     }
